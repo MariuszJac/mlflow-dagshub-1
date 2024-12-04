@@ -4,7 +4,7 @@ import os
 import pandas as pd
 #import dagshub
 
-#dagshub.init(repo_owner='krishnaik06', repo_name='MLfLow', mlflow=True)
+dagshub.init(repo_owner='krishnaik06', repo_name='MLfLow', mlflow=True)
 #mlflow.set_tracking_uri("https://dagshub.com/krishnaik06/MLfLow.mlflow")
 eval_data = pd.DataFrame(
     {
@@ -47,7 +47,7 @@ with mlflow.start_run() as run:
         eval_data,
         targets="ground_truth",
         model_type="question-answering",
-        extra_metrics=[mlflow.metrics.toxicity(), mlflow.metrics.latency(),mlflow.metrics.genai.answer_similarity()]
+        extra_metrics=[mlflow.metrics.latency(),mlflow.metrics.genai.answer_similarity()]
     )
     print(f"See aggregated evaluation results below: \n{results.metrics}")
 
