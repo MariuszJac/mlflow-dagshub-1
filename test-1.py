@@ -7,6 +7,10 @@ import pandas as pd
 from getpass import getpass
 from mlflow.metrics import latency
 from mlflow.metrics.genai import answer_correctness, answer_similarity, answer_relevance
+import dagshub
+
+dagshub.init(repo_owner='MariuszJac', repo_name='mlflow-dagshub-1', mlflow=True)
+mlflow.set_tracking_uri("https://dagshub.com/MariuszJac/mlflow-dagshub-1.mlflow")
 
 eval_data = pd.DataFrame(
     {
@@ -30,6 +34,7 @@ eval_data = pd.DataFrame(
     }
 )
 
+mlflow.set_experiment("LLM-1 Evaluation")
 with mlflow.start_run() as run:
     system_prompt = "Answer the following question in two sentences"
     # Wrap "gpt-4" as an MLflow model.

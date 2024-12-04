@@ -19,3 +19,5 @@ torch
 transformers
 nltk
 rouge-score
+
+dagshub
